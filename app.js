@@ -7,7 +7,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
-const ExpressError = require('./utils/ExpressError.js');
+const ExpressError = require('./utils/expressError.js');
 
 
 const listingRouter = require('./routes/listing.js');
