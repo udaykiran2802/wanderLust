@@ -18,10 +18,9 @@ const upload = multer({storage})// uploads ane folder ni create chesi only files
 
 // New Route
 router.get('/new',isLogggedin,  wrapAsync(listingController.renderNewForm));
-router.route('/arctic')
-.get( wrapAsync(listingController.arctic));
-router.route('/domes')
-.get( wrapAsync(listingController.domes));
+router.get('/arctic',wrapAsync(listingController.arctic));
+router.get('/domes', wrapAsync(listingController.domes));
+
 
 // Index Route
 router.route('/')

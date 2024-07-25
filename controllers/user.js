@@ -24,6 +24,7 @@ module.exports.registerUser = async(req, res) => {
     }
 }
 
+
 module.exports.showLoginForm = (req, res) =>{
     res.render("users/login.ejs");
 }
