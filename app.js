@@ -4,6 +4,7 @@ if(process.env.NODE_EN != 'production'){
 
 
 const express = require('express');
+
 const app = express();
 const mongoose = require('mongoose');
 const path = require('path');
@@ -23,8 +24,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user.js');
 
-const listingController = require('./controllers/listing.js');
-const wrapAsync = require('./utils/wrapAsync.js');
+const listingController = require('./controllers/listing.js');//1
+const wrapAsync = require('./utils/wrapAsync.js');//2
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -36,6 +37,8 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, 'public')));//static files anevi public folder lo vunnai  avi use cheskodaniki
 
 const dbURL = process.env.ATLAS_URL;
+const port = 8020;
+const localDBurl = "mongodb://127.0.0.1:27017/wanderlust"
 
 main()
 .then(()=>{
@@ -60,7 +63,7 @@ store.on("error",()=>{
 })
  
 const sessionOptns= {
-    store,
+    // store,
     secret: process.env.SECRET,
     resave:false,
     saveUninitialized:true,
@@ -85,6 +88,13 @@ passport.deserializeUser(User.deserializeUser());
 app.listen(8020,()=>{
     console.log("app is listening on port 8020");
 });
+// connectToDatabase().then((db) => {
+//     app.listen(port, () => {
+//       console.log(`App is listening on port ${port}`);
+//     });
+//   }).catch(err => {
+//     console.error('Failed to connect to the database:', err);
+//   });
 
 app.use((req, res, next)=>{
     res.locals.success = req.flash("success");
@@ -95,7 +105,7 @@ app.use((req, res, next)=>{
     next();
 })
 
-app.get('/',wrapAsync(listingController.index) );
+app.get('/',wrapAsync(listingController.index) );//3
 
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewsRouter);

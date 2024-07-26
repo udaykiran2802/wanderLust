@@ -14,12 +14,24 @@ const upload = multer({storage})// uploads ane folder ni create chesi only files
 
 
 
+//search Route
+router.get('/search', wrapAsync(listingController.search));
 
 
 // New Route
 router.get('/new',isLogggedin,  wrapAsync(listingController.renderNewForm));
 router.get('/arctic',wrapAsync(listingController.arctic));
 router.get('/domes', wrapAsync(listingController.domes));
+
+router.get('/mountains',wrapAsync(listingController.mountains));
+router.get('/iconicCities', wrapAsync(listingController.iconicCities));
+router.get('/castles',wrapAsync(listingController.castles));
+router.get('/amazingPools', wrapAsync(listingController.amazingPools));
+// router.get('/trending',wrapAsync(listingController.trending));
+router.get('/rooms', wrapAsync(listingController.rooms));
+router.get('/boats', wrapAsync(listingController.boats));
+router.get('/camping', wrapAsync(listingController.camping));
+router.get('/farms', wrapAsync(listingController.farms));
 
 
 // Index Route
@@ -41,6 +53,7 @@ router.route('/:id')
 
 // Edit Route
 router.get('/:id/edit',isLogggedin, isOwner, wrapAsync(listingController.renderEditForm));
+
 
 
 

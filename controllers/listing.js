@@ -13,6 +13,38 @@ module.exports.domes = async (req, res) => {
     const allListing = await Listing.find({category: 'domes'});
     res.render("../views/listings/index.ejs", { allListing });
 }
+module.exports.mountains = async (req, res) => {
+    const allListing = await Listing.find({category: 'mountains'});
+    res.render("../views/listings/index.ejs", { allListing });
+}
+module.exports.iconicCities = async (req, res) => {
+    const allListing = await Listing.find({category: 'Iconic Cities'});
+    res.render("../views/listings/index.ejs", { allListing });
+}
+module.exports.castles = async (req, res) => {
+    const allListing = await Listing.find({category: 'castles'});
+    res.render("../views/listings/index.ejs", { allListing });
+}
+module.exports.amazingPools = async (req, res) => {
+    const allListing = await Listing.find({category: 'Amazing Pools'});
+    res.render("../views/listings/index.ejs", { allListing });
+}
+module.exports.camping = async (req, res) => {
+    const allListing = await Listing.find({category: 'camping'});
+    res.render("../views/listings/index.ejs", { allListing });
+}
+module.exports.farms = async (req, res) => {
+    const allListing = await Listing.find({category: 'farms'});
+    res.render("../views/listings/index.ejs", { allListing });
+}
+module.exports.boats = async (req, res) => {
+    const allListing = await Listing.find({category: 'boats'});
+    res.render("../views/listings/index.ejs", { allListing });
+}
+module.exports.rooms = async (req, res) => {
+    const allListing = await Listing.find({category: 'rooms'});
+    res.render("../views/listings/index.ejs", { allListing });
+}
 
 module.exports.renderNewForm = (req, res) => {
     
@@ -40,6 +72,19 @@ module.exports.createListing = async (req, res) => {
     req.flash("success", "new Listing saved successfully!");
     res.redirect("/listings");
 }
+// search
+module.exports.search = async (req, res) => {
+    // console.log(req.query.query);
+    let searchListingName = req.query.query;
+    const allListing = await Listing.find({title: searchListingName});
+    if (!allListing) {
+        req.flash("error", "The Listing you requested for does not exists!");
+        res.redirect("/listings");
+    }
+    console.log(listing);
+    res.render("../views/listings/index.ejs", { allListing });
+
+} 
 
 module.exports.renderEditForm = async (req, res, next) => {
     let { id } = req.params;
