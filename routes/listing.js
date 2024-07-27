@@ -16,6 +16,7 @@ const upload = multer({storage})// uploads ane folder ni create chesi only files
 
 //search Route
 router.get('/search', wrapAsync(listingController.search));
+router.get('/owner',isLogggedin, wrapAsync(listingController.owner));
 
 
 // New Route

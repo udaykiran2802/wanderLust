@@ -18,3 +18,14 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         <% } %>
+
+        <% if(encourage && encourage.length) { %>
+            <div class="alert  alert-dismissible fade show col-6 offset-3" role="alert" style=" background-color:  #218cff ;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+            ">
+                <%= encourage %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% } %>

@@ -3,17 +3,20 @@ const Listing = require('../models/listing.js');
 module.exports.index = async (req, res) => {
     
     const allListing = await Listing.find({});
+    console.log(res.locals.currPath);
     res.render("../views/listings/index.ejs", { allListing });
 }
 module.exports.arctic = async (req, res) => {
+    let arcticI = 1;
     const allListing = await Listing.find({category: 'arctic'});
-    res.render("../views/listings/index.ejs", { allListing });
+    res.render("../views/listings/index.ejs", { allListing, arcticI });
 }
 module.exports.domes = async (req, res) => {
     const allListing = await Listing.find({category: 'domes'});
     res.render("../views/listings/index.ejs", { allListing });
 }
 module.exports.mountains = async (req, res) => {
+    console.log(res.locals.currPath);
     const allListing = await Listing.find({category: 'mountains'});
     res.render("../views/listings/index.ejs", { allListing });
 }
@@ -77,20 +80,34 @@ module.exports.search = async (req, res) => {
     // console.log(req.query.query);
     let searchListingName = req.query.query;
     const allListing = await Listing.find({title: searchListingName});
-    if (!allListing) {
+    console.log(allListing);
+    if (allListing.length === 0) {
         req.flash("error", "The Listing you requested for does not exists!");
         res.redirect("/listings");
+    }else{
+    console.log(listing);
+    res.render("../views/listings/index.ejs", { allListing });
+    }
+
+} 
+//owner listings
+module.exports.owner = async (req, res) => {
+    const allListing = await Listing.find({owner: req.user._id });
+    if (allListing.length === 0) {
+        req.flash("encourage", "You currently have no listings. Why not create your first one today and start your adventure?");
+      return  res.redirect("/listings");
     }
     console.log(listing);
     res.render("../views/listings/index.ejs", { allListing });
 
-} 
+
+}
 
 module.exports.renderEditForm = async (req, res, next) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
     if (!listing) {
-        req.flash("error", "The Listing you requested for does not exists!");
+        req.flash("error", "The listing you requested does not exist. Please try searching for a different listing");
         res.redirect("/listings");
     }
     let originalImageUrl = listing.image.url;

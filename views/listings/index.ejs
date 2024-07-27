@@ -33,94 +33,157 @@
         }
     </style>
 
-    
-
-    <div id="filters">
+    <div id="filters" class="container-fluid xs-3  ">
         <div class="filter">
-            <a href="/listings/mountains" style="display: block; text-decoration: none;">
+            
+            <% if (currPath==="/listings/mountains") {%>
+            <a href="/listings/mountains" style="display: block; text-decoration: none;color:#fe424d;  ">
+                <div><i class="fa-solid fa-mountain "></i></div>
+                <p>Mountains</p>
+            </a>
+        <% }else{ %>
+            <a href="/listings/mountains" style="display: block; text-decoration: none; ">
                 <div><i class="fa-solid fa-mountain"></i></div>
                 <p>Mountains</p>
             </a>
-            
+            <% } %>
         </div>
+
         <div class="filter">
-            <a href="/listings/iconicCities" style="display: block; text-decoration: none;">
+            <% if (currPath==="/listings/iconicCities") {%>
+            <a href="/listings/iconicCities" style="display: block; text-decoration: none;color:#fe424d;">
                 <div><i class="fa-solid fa-mountain-city"></i></div>
                 <p>Iconic Cities</p>
             </a>
-            
+            <% }else{ %>
+                <a href="/listings/iconicCities" style="display: block; text-decoration: none;">
+                    <div><i class="fa-solid fa-mountain-city"></i></div>
+                    <p>Iconic Cities</p>
+                </a>
+                <% } %>
         </div>
         <div class="filter">
-            <a href="/listings/castles" style="display: block; text-decoration: none;">
+            <% if (currPath==="/listings/castles") {%>
+            <a href="/listings/castles" style="display: block; text-decoration: none;color:#fe424d;">
                 <div><i class="fa-brands fa-fort-awesome"></i></div>
                 <p>Castles</p>
             </a>
-            
+            <% }else{ %>
+                <a href="/listings/castles" style="display: block; text-decoration: none;">
+                    <div><i class="fa-brands fa-fort-awesome"></i></div>
+                    <p>Castles</p>
+                </a>
+                <% } %>
         </div>
         <div class="filter">
-            <a href="/listings/amazingPools" style="display: block; text-decoration: none;">
+            <% if (currPath==="/listings/amazingPools") {%>
+            <a href="/listings/amazingPools" style="display: block; text-decoration: none;color:#fe424d;">
                 <div><i class="fa-solid fa-person-swimming"></i></div>
                 <p>Amazing Pools</p>
             </a>
-            
+            <% }else{ %>
+                <a href="/listings/amazingPools" style="display: block; text-decoration: none;">
+                    <div><i class="fa-solid fa-person-swimming"></i></div>
+                    <p>Amazing Pools</p>
+                </a>
+                <% } %>
         </div>
         
 
 
-        <div class="filter">
+        <!-- <div class="filter">
            
                 <div><i class="fa-solid fa-fire"></i></div>
                 <p>Trending</p>
             
             
-        </div>
+        </div> -->
         <div class="filter">
-            <a href="/listings/rooms" style="display: block; text-decoration: none;">
+            <% if (currPath==="/listings/rooms") {%>
+            <a href="/listings/rooms" style="display: block; text-decoration: none;color:#fe424d;">
                 <div><i class="fa-solid fa-bed"></i></div>
                 <p>Rooms</p>
             </a>
-            
+            <% }else{ %>
+                <a href="/listings/rooms" style="display: block; text-decoration: none;">
+                    <div><i class="fa-solid fa-bed"></i></div>
+                    <p>Rooms</p>
+                </a>
+                <% } %>
         </div>
 
 
 
         <div class="filter">
-            <a href="/listings/arctic" style="display: block; text-decoration: none;">
+            <% if (currPath==="/listings/camping") {%>
+            <a href="/listings/camping" style="display: block; text-decoration: none;color:#fe424d;">
                 <div><i class="fa-solid fa-campground"></i></div>
                 <p>Camping</p>
             </a>
-            
+            <% }else{ %>
+                <a href="/listings/camping" style="display: block; text-decoration: none;">
+                    <div><i class="fa-solid fa-campground"></i></div>
+                    <p>Camping</p>
+                </a>
+                <% } %>
         </div>
         <div class="filter">
-            <a href="/listings/farms" style="display: block; text-decoration: none;"> 
+            <% if (currPath==="/listings/farms") {%>
+            <a href="/listings/farms" style="display: block; text-decoration: none;color:#fe424d;"> 
                 <div><i class="fa-solid fa-cow"></i></i></div>
                 <p>farms</p>
             </a>
+            <% }else{ %>
+                <a href="/listings/farms" style="display: block; text-decoration: none;"> 
+                    <div><i class="fa-solid fa-cow"></i></i></div>
+                    <p>farms</p>
+                </a>
+                <% } %>
         </div>
         <div class="filter">
-            <a href="/listings/arctic" style="display: block; text-decoration: none;"><div><i hre class="fa-regular fa-snowflake" id="fa-snowflake"></i></i></div>
+            <% if (currPath==="/listings/arctic") {%>
+            <a href="/listings/arctic" style="display: block; text-decoration: none;color:#fe424d;"><div><i hre class="fa-regular fa-snowflake" id="fa-snowflake"></i></i></div>
             <p>Arctic</p>
         </a>
+        <% }else{ %>
+            <a href="/listings/arctic" style="display: block; text-decoration: none;"><div><i hre class="fa-regular fa-snowflake" id="fa-snowflake"></i></i></div>
+                <p>Arctic</p>
+            </a>
+            <% } %>
         </div>
 
         <div class="filter">
-            <a href="/listings/domes" style="display: block; text-decoration: none;"> <div><i class="fa-solid fa-igloo"></i></div>
+            <% if (currPath==="/listings/domes") {%>
+            <a href="/listings/domes" style="display: block; text-decoration: none;color:#fe424d;"> <div><i class="fa-solid fa-igloo"></i></div>
             <p>Domes</p>
         </a>
+        <% }else{ %>
+            <a href="/listings/domes" style="display: block; text-decoration: none;"> <div><i class="fa-solid fa-igloo"></i></div>
+                <p>Domes</p>
+            </a>
+            <% } %>
         </div>
         <div class="filter">
-            <a href="/listings/boats" style="display: block; text-decoration: none;">
+            <% if (currPath==="/listings/boats") {%>
+            <a href="/listings/boats" style="display: block; text-decoration: none;color:#fe424d;">
                 <div><i class="fa-solid fa-ship"></i></div>
                 <p>Boats</p>
             </a>
+            <% }else{ %>
+                <a href="/listings/boats" style="display: block; text-decoration: none;">
+                    <div><i class="fa-solid fa-ship"></i></div>
+                    <p>Boats</p>
+                </a>
+                <% } %>
         </div>
 
-        <div class="tax-toggle">
+        <div class="tax-toggle lg-ms-5 sm-ms-auto sm-me-auto">
             <div class="form-check-reverse form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Display total after taxes</label>
             </div>
         </div>
+        
         
     </div>
    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">      
@@ -159,7 +222,17 @@
                 info.style.display = "none";
             }
         }  
-    })
+    });
+
+    
+
+        if (articI ===1){
+        arcticIcon.style.opacity= 1;
+        }else{
+            arcticIcon.style.opacity= 0.7;
+        }
+        
+ 
 
     // let arctic = document.getElementById("fa-snowflake");
     // arctic.addEventListener("click", async()=>{

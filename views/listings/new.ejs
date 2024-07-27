@@ -1,6 +1,8 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-    <h3> Create a new listing </h3>
+    <div class="row ">
+        <div class="col-8 offset-2">
+            <h3> Create a new listing </h3>
     <form action="/listings" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="from-label">Title</label>
@@ -46,7 +48,8 @@
             <option value="farms">farms</option>
             <option value="arctic">arctic</option>
             <option value="domes">Domes</option>
-            <option value="boats">Boats</option>
+            <option value="boats">Boats</option>\
+            <option value="rooms">Rooms</option>
           </select>
           
         </div>
@@ -76,6 +79,8 @@
         
         <button class="btn btn-dark edit-btn mt-3">ADD</button>
     </form>
+        </div>
+    </div>
 
     
     

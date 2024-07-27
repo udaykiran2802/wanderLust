@@ -47,7 +47,7 @@ main()
 .catch(err => console.log(err));
 
 async function main() {
-  await mongoose.connect(dbURL);  
+  await mongoose.connect(dbURL );  
   // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
 
@@ -63,7 +63,7 @@ store.on("error",()=>{
 })
  
 const sessionOptns= {
-    // store,
+    store,
     secret: process.env.SECRET,
     resave:false,
     saveUninitialized:true,
@@ -100,7 +100,9 @@ app.use((req, res, next)=>{
     res.locals.success = req.flash("success");
     res.locals.fail = req.flash("fail");
     res.locals.error = req.flash("error");
+    res.locals.encourage = req.flash("encourage");
     res.locals.currUser = req.user;
+    res.locals.currPath = req.url;
 
     next();
 })
