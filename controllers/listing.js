@@ -7,9 +7,9 @@ module.exports.index = async (req, res) => {
     res.render("../views/listings/index.ejs", { allListing });
 }
 module.exports.arctic = async (req, res) => {
-    let arcticI = 1;
+    
     const allListing = await Listing.find({category: 'arctic'});
-    res.render("../views/listings/index.ejs", { allListing, arcticI });
+    res.render("../views/listings/index.ejs", { allListing});
 }
 module.exports.domes = async (req, res) => {
     const allListing = await Listing.find({category: 'domes'});
@@ -18,6 +18,7 @@ module.exports.domes = async (req, res) => {
 module.exports.mountains = async (req, res) => {
     console.log(res.locals.currPath);
     const allListing = await Listing.find({category: 'mountains'});
+    console.log(allListing);
     res.render("../views/listings/index.ejs", { allListing });
 }
 module.exports.iconicCities = async (req, res) => {
@@ -38,6 +39,7 @@ module.exports.camping = async (req, res) => {
 }
 module.exports.farms = async (req, res) => {
     const allListing = await Listing.find({category: 'farms'});
+    console.log(allListing)
     res.render("../views/listings/index.ejs", { allListing });
 }
 module.exports.boats = async (req, res) => {
@@ -79,7 +81,7 @@ module.exports.createListing = async (req, res) => {
 module.exports.search = async (req, res) => {
     // console.log(req.query.query);
     let searchListingName = req.query.query;
-    const allListing = await Listing.find({title: searchListingName});
+    const allListing = await Listing.find({title: { $regex:searchListingName,$options: 'i' }});
     console.log(allListing);
     if (allListing.length === 0) {
         req.flash("error", "The Listing you requested for does not exists!");
@@ -93,11 +95,11 @@ module.exports.search = async (req, res) => {
 //owner listings
 module.exports.owner = async (req, res) => {
     const allListing = await Listing.find({owner: req.user._id });
-    if (allListing.length === 0) {
-        req.flash("encourage", "You currently have no listings. Why not create your first one today and start your adventure?");
-      return  res.redirect("/listings");
-    }
-    console.log(listing);
+    // if (allListing.length === 0) {
+    //     req.flash("encourage", "You currently have no listings. Why not create your first one today and start your adventure?");
+    //   return  res.redirect("/listings");
+    // }
+    
     res.render("../views/listings/index.ejs", { allListing });
 
 
@@ -133,7 +135,13 @@ module.exports.updateListing = async (req, res) => {
 
 module.exports.distroyListing = async (req, res) => {
     let { id } = req.params;
-    await Listing.findByIdAndDelete(id);
-    req.flash("fail", "Listing deleted!");
-    res.redirect('/listings');
+    try {
+        await Listing.findByIdAndDelete(id);
+        req.flash("fail", "Listing deleted!");
+        res.redirect('/listings');
+    } catch (error) {
+        console.error('Error deleting listing:', error);
+        res.status(500).json({ error: 'Failed to delete listing.' });
+    }
+    
 }
